@@ -37,3 +37,23 @@ export const DeleteButton = styled.button`
     background-color: #ff0000;
   }
 `;
+
+export const ProductDetailsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ProductName = styled.strong`
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+`;
+
+export const ProductPrice = styled.strong`
+  font-size: 1rem;
+  color: #333;
+`;
+
+export const ProductDescription = styled.p`
+  font-size: 0.9rem;
+  color: #666;
+`;

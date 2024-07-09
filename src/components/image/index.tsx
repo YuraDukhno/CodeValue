@@ -1,6 +1,6 @@
-import React from 'react';
-import { ImageContainer, PlaceholderText } from './styled';
-import { styled } from 'styled-components';
+import React from "react";
+import { ImageContainer, PlaceholderText } from "./styled";
+import { styled } from "styled-components";
 
 interface ProductImageProps {
   src?: string;

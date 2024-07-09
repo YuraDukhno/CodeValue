@@ -1,15 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import type { Product } from '../../../types';
-import type { RootState } from '../../../store/store';
-import { addProduct, selectProduct, updateProduct } from '../../../store/productsSlice';
-import { AddButton, Container, DetailsForm, FormField, Input, Label, SaveButton } from './styled';
-
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import type { Product } from "../../../types";
+import type { RootState } from "../../../store/store";
+import {
+  addProduct,
+  selectProduct,
+  updateProduct,
+} from "../../../store/productsSlice";
+import {
+  AddButton,
+  Container,
+  DetailsForm,
+  FormField,
+  Input,
+  Label,
+  SaveButton,
+} from "./styled";
 
 export const ProductDetails: React.FC = () => {
   const dispatch = useDispatch();
-  const selectedProduct = useSelector((state: RootState) => state.products.selectedProduct);
-  const [currentProduct, setCurrentProduct] = useState<Product | null>(selectedProduct);
+  const selectedProduct = useSelector(
+    (state: RootState) => state.products.selectedProduct
+  );
+  const [currentProduct, setCurrentProduct] = useState<Product | null>(
+    selectedProduct
+  );
   const [isNew, setIsNew] = useState(false);
 
   useEffect(() => {
@@ -20,7 +35,10 @@ export const ProductDetails: React.FC = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (currentProduct) {
       const { name, value } = e.target;
-      setCurrentProduct({ ...currentProduct, [name]: name === 'price' ? Number(value) : value });
+      setCurrentProduct({
+        ...currentProduct,
+        [name]: name === "price" ? Number(value) : value,
+      });
     }
   };
 
@@ -30,7 +48,9 @@ export const ProductDetails: React.FC = () => {
     const time = date.getTime();
     if (currentProduct) {
       if (isNew) {
-        dispatch(addProduct({ ...currentProduct, id: Date.now(), creationDate: time }));
+        dispatch(
+          addProduct({ ...currentProduct, id: Date.now(), creationDate: time })
+        );
       } else {
         dispatch(updateProduct(currentProduct));
       }
@@ -45,16 +65,17 @@ export const ProductDetails: React.FC = () => {
     const time = date.getTime();
     setCurrentProduct({
       id: 0,
-      name: '',
-      description: '',
+      name: "",
+      description: "",
       price: 0,
-      image: '',
+      image: "",
       creationDate: time,
     });
     setIsNew(true);
   };
 
-  const isValid = currentProduct && currentProduct.name && currentProduct.price > 0;
+  const isValid =
+    currentProduct && currentProduct.name && currentProduct.price > 0;
 
   return (
     <Container>
